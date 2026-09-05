@@ -1,0 +1,66 @@
+PAIMANA - WINDOWS QUICKSTART
+============================
+
+EASIEST WAY
+-----------
+1. Unzip paimana_website.zip (right-click, Extract All...)
+2. Double-click  run_windows.bat
+3. Browse to  http://localhost:8000
+
+The launcher is self-healing: it checks Python, fixes a NumPy/pandas
+binary clash if present, installs packages on first run, and retrains the
+models automatically if the bundled ones do not match your library
+versions. The zip already contains the dataset, SQLite DB, trained models
+and the built frontend - no Node.js needed.
+
+RECOMMENDED: PRIVATE ENVIRONMENT (does not touch your other projects)
+---------------------------------------------------------------------
+If you use Python for other projects, double-click:
+
+    make_venv_windows.bat      (creates .venv, installs packages once)
+
+then run  run_windows.bat  - it automatically uses the private .venv.
+
+
+MANUAL WAY (PowerShell) - run ONE LINE AT A TIME
+------------------------------------------------
+(no && and no # comments - those cause PowerShell parse errors)
+
+    cd "C:\Users\you\Downloads\paimana_website\paimana_website"
+    python -m venv .venv
+    .venv\Scripts\activate
+    python -m pip install -r backend\requirements.txt
+    cd backend
+    python -m uvicorn app.main:app --port 8000
+
+Then open http://localhost:8000.
+
+
+ERROR: "A module that was compiled using NumPy 1.x cannot be run in
+        NumPy 2.x" / "numpy.core.multiarray failed to import"
+------------------------------------------------------------------
+Your Python environment (used by other projects too) has pandas 2.2.2
+and/or pyarrow built for NumPy 1.x, but NumPy 2.2.6 installed. Two fixes:
+
+  Quick fix, keeps using that environment:
+      python -m pip install --upgrade "pandas>=2.2.3" pyarrow
+      (then run run_windows.bat again)
+
+  Clean fix:
+      run make_venv_windows.bat, then run_windows.bat
+
+run_windows.bat now does the quick fix by itself automatically.
+
+
+OTHER TROUBLESHOOTING
+---------------------
+- 'python' not recognized : install Python 3.11/3.12 from python.org,
+  tick "Add to PATH", reopen PowerShell - or use 'py' instead.
+- Port 8000 busy : change the launcher port by running manually:
+  cd backend  then  python -m uvicorn app.main:app --port 8080
+- Endpoints about models misbehave after a library upgrade :
+  cd backend  then  python -m app.ml.pipeline  (retrains, ~1-2 minutes)
+- To retrain from scratch : same command as above. It rebuilds the
+  database and model card from data/paimana_panel.csv.
+- The website does NOT need the MoSPI source PDFs; see
+  data_source\README.txt if you want them.

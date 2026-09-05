@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-09-03T05:27:54",
+  "sources": {
+    "2024-04": {
+      "report": "Flash Report on Central Sector Infrastructure Projects, April 2024",
+      "url": "https://www.mospi.gov.in/sites/default/files/publication_reports/FlashReport_April_2024.pdf"
+    },
+    "2024-05": {
+      "report": "Flash Report on Central Sector Infrastructure Projects, May 2024",
+      "url": "https://www.mospi.gov.in/sites/default/files/publication_reports/FlashReport_May_2024.pdf"
+    },
+    "2024-06": {
+      "report": "Quarterly Project Implementation Status Report, Q1 2024-25 (Apr-Jun 2024)",
+      "url": "https://www.mospi.gov.in/sites/default/files/publication_reports/QPISR_1st_QTR_2024-25.pdf"
+    },
+    "2024-08": {
+      "report": "Flash Report on Central Sector Infrastructure Projects, August 2024",
+      "url": "https://www.mospi.gov.in/sites/default/files/publication_reports/FlashReport_August_2024.pdf"
+    },
+    "2024-09": {
+      "report": "Flash Report on Central Sector Infrastructure Projects, September 2024",
+      "url": "https://www.mospi.gov.in/sites/default/files/publication_reports/FlashReport_September_2024.pdf"
+    },
+    "2025-03": {
+      "report": "Quarterly Project Implementation Status Report, Q4 2024-25 (Jan-Mar 2025)",
+      "url": "https://www.mospi.gov.in/sites/default/files/publication_reports/QPISR_4th_QTR_2024-25.pdf"
+    }
+  },
+  "notes": [
+    "All rows are parsed from MoSPI-published PDF reports (Flash Reports and QPISR).",
+    "cost_overrun_pct = (latest_cost - original_cost)/original_cost*100, where latest_cost = anticipated cost if reported, else revised, else original.",
+    "time_overrun_months = latest_completion_target - original_completion_target in months (actual completion date for completed projects).",
+    "cost_overrun_flag = 1 when latest cost exceeds original approved cost (consistent with MoSPI flash-report counting).",
+    "Physical progress % is published only in QPISR quarterly reports, not in monthly flash reports; it is missing for flash-only months.",
+    "Flash TABLE-13 closed projects carry no project codes in the source; they are matched to coded panel rows by normalized project name where unique.",
+    "For flash TABLE-13 rows, completion month is approximated by the reported \"now anticipated\" date of commissioning when it is in the past, else the project is marked closed_unfinished.",
+    "Ministry is derived from sector via a documented GoI administrative mapping (shown in the app Data Quality page).",
+    "5 duplicate (project, month) rows were dropped, keeping QPISR first."
+  ],
+  "validation": {
+    "computed_vs_reported_cost_overrun": {
+      "n": 1470,
+      "match_within_1pp_pct": 100.0
+    },
+    "computed_vs_reported_time_overrun": {
+      "n": 1568,
+      "match_within_1m_pct": 99.5
+    },
+    "original_cost_consistent_across_months": {
+      "projects": 2071,
+      "consistent_pct": 95.2
+    },
+    "report_months": [
+      "2024-04",
+      "2024-05",
+      "2024-06",
+      "2024-08",
+      "2024-09",
+      "2025-03"
+    ],
+    "rows": 11121,
+    "unique_projects": 2163
+  }
+}

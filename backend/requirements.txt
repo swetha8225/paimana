@@ -1,0 +1,12 @@
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pandas>=2.0
+numpy>=1.26
+scikit-learn>=1.4
+catboost>=1.2.5
+xgboost>=2.0
+lightgbm>=4.3
+shap>=0.45
+lifelines>=0.28
+statsmodels>=0.14
+joblib>=1.3
